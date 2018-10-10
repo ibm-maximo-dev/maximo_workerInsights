@@ -1,4 +1,4 @@
-# *IBM IoT Worker and Home Insights Adapter for IBM Maximo for Oil and Gas and Gas and IBM Maximo Health, Safety and Environment Manager*
+# *IBM IoT Worker and Home Insights Adapter for IBM Maximo for Oil and Gas and IBM Maximo Health, Safety and Environment Manager*
 
 ## Overview
 [IBM IoT Worker and Home Insights](https://www-01.ibm.com/common/ssi/cgi-bin/ssialias?infotype=AN&subtype=CA&htmlfid=897/ENUS218-258&appname=USN), which was formerly known as IBM IoT for Insurance on Cloud, is a fully-managed cloud service offering that collects and analyzes data from sensors, such as wearables devices, to detect risks that are related to the employee work environment. It can detect falls, fatigue, heat exposure, and many others potenial hazards.
