@@ -39,7 +39,7 @@ If Maximo Health, Safety and Environment Manager or Maximo for Oil and Gas is in
 
 ## 1.2. Getting started
 
-[IBM IoT Worker and Home Insights Adapter](../maximo_workerInsights) is an add-on that is installed on the top of Maximo for Oil and Gas or Maximo Health, Safety and Environment Manager. The following figure shows the main components of the adapter: 
+[IBM IoT Worker and Home Insights Adapter](./) is an add-on that is installed on the top of Maximo for Oil and Gas or Maximo Health, Safety and Environment Manager. The following figure shows the main components of the adapter: 
 
 ![Libert](Diagrams/MX_AdapterComponents.png)
 
@@ -61,7 +61,7 @@ After the development environment is configured according item 1.1:
 
 ### Get code from GitHub
 
-* *Clone or fork [IBM IoT Worker and Home Insights Adapter](../maximo_workerInsights) from GitHub*
+* *Clone or fork [IBM IoT Worker and Home Insights Adapter](./) from GitHub*
 * If you opt to use the source code:
     * *Copy the content of the [maximo-workerInsights/source](./Source) package over the  Maximo installation folder (MAXIMO_HOME)*
     * Build the entire project and make sure the [maximo-workerInsights/source](./Source) generated the "*.class" output. [See instruction here - Building and compiling section](https://developer.ibm.com/assetmanagement/develop/setup/).
@@ -153,7 +153,7 @@ Figure 6 - Websphere application server full profile configuration for single si
 This option is not tested yet (the link on how to set up websphere full profile bridge available soon in this tutorial. Open a git issue in case it is urgently needed).
 
 ## Issues and Suggestions
-This tool is open source, which means that you are free to extend it.  You can even submit pull requests if you add a feature or fix a bug.  If you want to submit issues or suggestions, you can use the [Github Issues tab](../maximo_workerInsights/issues).
+This tool is open source, which means that you are free to extend it.  You can even submit pull requests if you add a feature or fix a bug.  If you want to submit issues or suggestions, you can use the [Github Issues tab](./issues).
 
 ## References
 
