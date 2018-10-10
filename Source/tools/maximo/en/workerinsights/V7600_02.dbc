@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE script SYSTEM "script.dtd">
+
+<script author="APBRAM" scriptname="V7600_02">
+  <description>Create Endpoint For Worker Insights</description>
+  <statements>
+   <freeform description="WORKERINSIGHTS Endpoint">
+     <sql target="all">
+		delete from maxendpointdtl where endpointname = 'WORKERINSIGHTS';
+		delete from maxendpoint where endpointname = 'WORKERINSIGHTS';
+		delete from maxhandler where handlername = 'WORKERINSIGHTHANDLE';
+	  </sql>
+	 </freeform>	
+    
+  	<insert table="MAXHANDLER" ignore_duplicates="true">
+      <insertrow>
+        <columnvalue column="HANDLERNAME" string="WORKERINSIGHTHANDLE" />
+        <columnvalue column="HANDLERCLASSNAME" string="psdi.plusg.app.plusgalert.PlusGWorkerInsightsHandler" />
+        <columnvalue column="CHANGEBY" string="WILSON" />
+        <columnvalue column="CHANGEDATE" date="sysdate" />
+        <columnvalue column="USERDEFINED" boolean="true" />
+        <columnvalue column="USEWITH" string="INTEGRATION" />
+      </insertrow>
+    </insert>
+     <insert table="MAXENDPOINT" ignore_duplicates="true">
+      <insertrow>
+        <columnvalue column="ENDPOINTNAME" string="WORKERINSIGHTS" />
+        <columnvalue column="HANDLERNAME" string="WORKERINSIGHTHANDLE" />
+        <columnvalue column="DESCRIPTION" string="Worker Insights API" />
+        <columnvalue column="CHANGEBY" string="WILSON" />
+        <columnvalue column="CHANGEDATE" date="sysdate" />
+        <columnvalue column="LANGCODE" string="EN" />
+        <columnvalue column="HASLD" boolean="false" />
+      </insertrow>
+    </insert>
+    <insert table="MAXENDPOINTDTL" ignore_duplicates="true">
+      <insertrow>
+        <columnvalue column="ENDPOINTNAME" string="WORKERINSIGHTS" />
+        <columnvalue column="PROPERTY" string="AUTHTOKEN" />
+        <columnvalue column="CHANGEBY" string="WILSON" />
+        <columnvalue column="CHANGEDATE" date="sysdate" />
+        <columnvalue column="ALLOWOVERRIDE" boolean="false" />
+      </insertrow>
+       <insertrow>
+        <columnvalue column="ENDPOINTNAME" string="WORKERINSIGHTS" />
+        <columnvalue column="PROPERTY" string="TENANT" />
+        <columnvalue column="CHANGEBY" string="WILSON" />
+        <columnvalue column="CHANGEDATE" date="sysdate" />
+        <columnvalue column="ALLOWOVERRIDE" boolean="false" />
+      </insertrow>
+      <insertrow>
+        <columnvalue column="ENDPOINTNAME" string="WORKERINSIGHTS" />
+        <columnvalue column="PROPERTY" string="URL" />
+        <columnvalue column="VALUE" string="" />
+        <columnvalue column="CHANGEBY" string="WILSON" />
+        <columnvalue column="CHANGEDATE" date="sysdate" />
+        <columnvalue column="ALLOWOVERRIDE" boolean="false" />
+      </insertrow>
+      
+    </insert> 
+  </statements>
+</script>
+

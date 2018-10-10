@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE script SYSTEM "script.dtd">
+<script author="apbram" scriptname="V7600_01">
+  <description>Creating Events table</description>
+  <statements>
+
+     <drop_table object="PLUSGALERTS" />
+     
+     
+     <define_table persistent="true" type="system" object="PLUSGALERTS" description="Alerts table" service="PLUSGBASIC" classname="psdi.plusg.app.plusgalert.PlusGAlertsSet" primarykey="alertid" mainobject="true" internal="false">    
+      <attrdef attribute="alertsource" title="Alert Source" remarks="Alert Source"  maxtype="ALN" length="50" persistent="true" haslongdesc="false" required="false" mustbe="true" ispositive="false" canautonum="false" userdefined="false" localizable="false" searchtype="WILDCARD"/>
+      <attrdef attribute="alerttype" title="Alert Type" remarks="Alert Type"  maxtype="ALN" length="50" persistent="true" haslongdesc="false" required="false" mustbe="true" ispositive="false" canautonum="false" userdefined="false" localizable="false" searchtype="WILDCARD"/>
+      <attrdef attribute="alertid" title="Alertid" remarks="Alert ID"  maxtype="ALN" length="50" persistent="true" haslongdesc="false" required="true" mustbe="true" ispositive="false" canautonum="false" userdefined="false" localizable="false" searchtype="WILDCARD"/>
+      <attrdef attribute="alertdesc" title="Description" remarks="Description"  maxtype="ALN" length="120" persistent="true" haslongdesc="false" required="false" mustbe="true" ispositive="false" canautonum="false" userdefined="false" localizable="false" searchtype="TEXT"/>
+      <attrdef attribute="alerttitle" title="Title" remarks="Description"  maxtype="ALN" length="120" persistent="true" haslongdesc="false" required="false" mustbe="true" ispositive="false" canautonum="false" userdefined="false" localizable="false" searchtype="TEXT"/>
+      <attrdef attribute="level" title="Alert Level" remarks="Alert level." maxtype="DECIMAL" length="10" scale="2" persistent="true" haslongdesc="false" required="false" mustbe="false" ispositive="false" canautonum="false" userdefined="false" />
+      <attrdef attribute="username" title="Person" remarks="Person"  maxtype="ALN" length="50" persistent="true" haslongdesc="false" required="false" mustbe="true" ispositive="false" canautonum="false" userdefined="false" localizable="false" searchtype="WILDCARD"/>
+      <attrdef attribute="timestamp" title="Timestamp" remarks="Timestamp"  maxtype="BIGINT" length="50" persistent="true" haslongdesc="false" required="false" mustbe="true" ispositive="false" canautonum="false" userdefined="false" localizable="false" searchtype="EXACT"/>
+      <attrdef attribute="updatedat" title="Updated Time" remarks="Updated at time."  maxtype="BIGINT" length="50" persistent="true" haslongdesc="false" required="false" mustbe="true" ispositive="false" canautonum="false" userdefined="false" localizable="false" searchtype="EXACT"/>      
+      <attrdef attribute="createdat" title="Created Time" remarks="Create at time."  maxtype="BIGINT" length="50" persistent="true" haslongdesc="false" required="false" mustbe="true" ispositive="false" canautonum="false" userdefined="false" localizable="false" searchtype="EXACT"/>      
+      <attrdef attribute="shield" title="Shield" remarks="Shield where alert has been detected."  maxtype="ALN" length="50" persistent="true" haslongdesc="false" required="false" mustbe="false" ispositive="false" canautonum="false" userdefined="false" localizable="false" searchtype="WILDCARD"/>
+      <attrdef attribute="markasread"  title="Read" remarks="Indicates whether alert has been read." maxtype="YORN" length="1" defaultvalue="0" persistent="true" haslongdesc="false" required="true" mustbe="true" ispositive="false" canautonum="false" userdefined="false" localizable="false"/>
+      <attrdef attribute="latitudey" maxtype="DECIMAL" title="Latitude" remarks="The latitude of this object." length="18" scale="10"  persistent="true" haslongdesc="false" required="false" mustbe="false" ispositive="false" canautonum="false" />
+	  <attrdef attribute="longitudex" maxtype="DECIMAL" title="Longitude" remarks="The longitude of this object" length="18" scale="10" persistent="true" haslongdesc="false" required="false" mustbe="false" ispositive="false" canautonum="false"/>     
+    </define_table>
+    
+    <add_attributes object="TICKET">
+	  	  <attrdef attribute="plusgalertid" title="Alert" remarks="Alert from external systems."  maxtype="ALN" length="50" persistent="true" haslongdesc="false" mustbe="true" ispositive="false" canautonum="false" userdefined="false" localizable="false" searchtype="WILDCARD"/>  
+	  </add_attributes> 
+    
+    <create_relationship parent="TICKET" name="PLUSGALERTS" child="PLUSGALERTS" whereclause="alertid=:plusgalertid" remarks="Relationship to retrieve the alert that generated the incident." />
+
+    <insert table="MAXINTOBJECT" ignore_duplicates="true">
+      <insertrow>
+        <columnvalue column="INTOBJECTNAME" string="MXAPIPLUSGSA" />
+        <columnvalue column="DESCRIPTION" string="Maximo API's Safety Alerts" />
+        <columnvalue column="SELFREFERENCING" boolean="false" />
+        <columnvalue column="USERDEFINED" boolean="true" />
+        <columnvalue column="CHANGEBY" string="MAXADMIN" />
+        <columnvalue column="CHANGEDATE" date="sysdate" />
+        <columnvalue column="LANGCODE" string="EN" />
+        <columnvalue column="HASLD" boolean="false" />      
+        <columnvalue column="QUERYONLY" boolean="false" />
+        <columnvalue column="CONFIGURABLE" boolean="true" />
+        <columnvalue column="FLATSUPPORTED" boolean="false" />
+        <columnvalue column="USEWITH" string="INTEGRATION" />
+        <columnvalue column="ALIASCONFLICT" boolean="false" />      
+      </insertrow>
+    </insert>
+    <insert table="MAXINTOBJDETAIL" ignore_duplicates="true">
+      <insertrow>
+        <columnvalue column="INTOBJECTNAME" string="MXAPIPLUSGSA" />
+        <columnvalue column="OBJECTNAME" string="PLUSGALERTS" />
+        <columnvalue column="OBJECTORDER" number="1" />
+        <columnvalue column="PROCESSORDER" number="1" />
+        <columnvalue column="USERDEFINED" boolean="true" />
+        <columnvalue column="CHANGEBY" string="MAXADMIN" />
+        <columnvalue column="CHANGEDATE" date="sysdate" />
+        <columnvalue column="OBJECTID" number="1" />
+        <columnvalue column="HIERARCHYPATH" string="PLUSGALERTS" />
+        <columnvalue column="EXCLUDEPARENTKEY" boolean="false" />
+        <columnvalue column="DELETEONCREATE" boolean="false" />
+        <columnvalue column="PROPAGATEEVENT" boolean="false" />
+        <columnvalue column="INVOKEEXECUTE" boolean="false" />
+      </insertrow>
+   </insert>
+   
+  </statements>	
+</script>

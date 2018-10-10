@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE script SYSTEM "script.dtd">
+<script author="apbram" scriptname="WORKERINSIGHTS Alerts cron task">
+  <description>Add crontask to get alerts from WORKERINSIGHTS</description>
+  <statements>
+  
+  
+   <freeform description="delete crontask definition">
+		<sql target="all">delete from crontaskdef where crontaskname in ('WORKERINSIGHTS');</sql>
+		<sql target="all">delete from crontaskinstance where crontaskname in ('WORKERINSIGHTS');</sql>
+		<sql target="all">delete from crontaskparam where crontaskname in ('WORKERINSIGHTS');</sql>
+		<sql target="all">delete from crontaskhistory where crontaskname in ('WORKERINSIGHTS');</sql>
+		<sql target="all">delete from taskscheduler where taskname in ('WORKERINSIGHTS.WORKERINSIGHTS');</sql>
+	</freeform>
+	
+    <insert table="CRONTASKDEF" ignore_duplicates="true">
+      <insertrow>
+        <columnvalue column="CRONTASKNAME" string="WORKERINSIGHTS" />
+        <columnvalue column="CLASSNAME" string="psdi.plusg.app.plusgalert.PlusGWorkerInsightsCronTask" />
+        <columnvalue column="DESCRIPTION" string="Get WORKERINSIGHTS Alerts" />
+        <columnvalue column="ACCESSLEVEL" string="FULL" />
+        <columnvalue column="LANGCODE" string="EN" />
+        <columnvalue column="HASLD" boolean="false" />
+      </insertrow>
+    </insert>
+    <insert table="CRONTASKINSTANCE" ignore_duplicates="true">
+      <insertrow>
+        <columnvalue column="CRONTASKNAME" string="WORKERINSIGHTS" />
+        <columnvalue column="INSTANCENAME" string="WORKERINSIGHTS" />
+        <columnvalue column="SCHEDULE" string="5m,*,*,*,*,*,*,*,*,*" />
+        <columnvalue column="ACTIVE" boolean="false" />
+        <columnvalue column="DESCRIPTION" string="Process WORKERINSIGHTS Alerts" />
+        <columnvalue column="RUNASUSERID" string="MAXADMIN" />
+        <columnvalue column="LANGCODE" string="EN" />
+        <columnvalue column="HASLD" boolean="false" />
+        <columnvalue column="AUTOREMOVAL" boolean="false" />
+        <columnvalue column="KEEPHISTORY" boolean="true" />
+        <columnvalue column="MAXHISTORY" number="1000" />
+      </insertrow>
+    </insert>
+	<insert table="CRONTASKPARAM" ignore_duplicates="true">
+	  <insertrow>
+        <columnvalue column="CRONTASKNAME" string="WORKERINSIGHTS" />
+        <columnvalue column="INSTANCENAME" string="WORKERINSIGHTS" />
+        <columnvalue column="PARAMETER" string="ALLOWED_ALERT" />
+        <columnvalue column="VALUE" string="Fall,Panic,noGoZone,behavioralFatigue" />
+      </insertrow>
+      <insertrow>
+        <columnvalue column="CRONTASKNAME" string="WORKERINSIGHTS" />
+        <columnvalue column="INSTANCENAME" string="WORKERINSIGHTS" />
+        <columnvalue column="PARAMETER" string="ALERT_TO_INCIDENT" />
+        <columnvalue column="VALUE" string="Fall,Panic"/>
+      </insertrow>
+       <insertrow>
+        <columnvalue column="CRONTASKNAME" string="WORKERINSIGHTS" />
+        <columnvalue column="INSTANCENAME" string="WORKERINSIGHTS" />
+        <columnvalue column="PARAMETER" string="PROCESSOR" />
+        <columnvalue column="VALUE" string="psdi.plusg.app.plusgalert.PlusGWorkerInsightsProcessor"/>
+      </insertrow>
+       <insertrow>
+        <columnvalue column="CRONTASKNAME" string="WORKERINSIGHTS" />
+        <columnvalue column="INSTANCENAME" string="WORKERINSIGHTS" />
+        <columnvalue column="PARAMETER" string="INIT_TIME" />
+        <columnvalue column="VALUE" string="2018-08-15T00:00:00Z"/>
+      </insertrow>
+    </insert>
+  </statements>
+</script>
+  

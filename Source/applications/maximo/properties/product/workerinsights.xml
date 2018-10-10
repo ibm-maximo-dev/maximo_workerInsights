@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<product>
+	<name>IBM IoT Worker and Home Insights Adapter</name>
+	<version>
+		<major>7</major>
+		<minor>6</minor>
+		<modlevel>0</modlevel>
+		<patch>0</patch>
+		<build>20180920-104000</build>
+	</version>
+	<dbmaxvarname>DBWORKINSIG</dbmaxvarname>
+	<dbscripts>workerinsights</dbscripts>
+	<dbversion>V7600-03</dbversion>
+    <checklicense>0</checklicense>
+    <lastdbversion>V7600-00</lastdbversion>
+    <depends>oilandgas</depends> 
+</product>
