@@ -14,9 +14,9 @@ The following component diagram shows an example of integration architecture bet
 ![Libert](Diagrams/WI_MX_IntegrationArchitecture.png)
 Figure 1 - Maximo products and IoT Worker and Home Insights overall integration architecture.
 
-The option for one of these ways of integration depends on the use case and criticality of the hazards. The following items describe [how to set up the overall environment](https://github.ibm.com/apbram/maximo_workerInsights#1-how-to-setup-maximo-hseog-with-worker-insights-adapter) and then how to configure option [#1](https://github.ibm.com/apbram/maximo_workerInsights#2--configuring-maximo-to-get-hazards-from-worker-insights) and [#2](https://github.ibm.com/apbram/maximo_workerInsights#3-configuring-worker-insights-to-post-hazards-to-maximo) described above.
+The option for one of these ways of integration depends on the use case and criticality of the hazards. The following items describe [how to set up the overall environment](#1-how-to-set-up--maximo-health-safety-and-environment-manager-or-maximo-for-oil-and-gas-with-the-adapter-for-iot-worker-and-home-insights) and then how to configure option [#1](#2--configuring-the-maximo-product-to-get-hazards-from-iot-worker-and-home-insights) and [#2](#3-configuring-iot-worker-and-home-insights-to-post-hazards-to-the-maximo-product) described above.
 
-If Maximo Health, Safety and Environment Manager or Maximo for Oil and Gas is installed with LDAP, it is possible to configure the single sign on between the Maximo product and IoT Worker and Home Insights.  See [item 4](https://github.ibm.com/apbram/maximo_workerInsights#4-maximo-and-worker-insights-ldap-configuration-for-single-sign-on) for more details.
+If Maximo Health, Safety and Environment Manager or Maximo for Oil and Gas is installed with LDAP, it is possible to configure the single sign on between the Maximo product and IoT Worker and Home Insights.  See [item 4](#4-the-maximo-product-and-iot-worker-and-home-insights-ldap-configuration-for-single-sign-on) for more details.
 
 ## 1. How to set up  Maximo Health, Safety and Environment Manager or Maximo for Oil and Gas with the adapter for IoT Worker and Home Insights
 
@@ -39,7 +39,7 @@ If Maximo Health, Safety and Environment Manager or Maximo for Oil and Gas is in
 
 ## 1.2. Getting started
 
-[IBM IoT Worker and Home Insights Adapter](https://github.ibm.com/apbram/maximo_workerInsights) is an add-on that is installed on the top of Maximo for Oil and Gas or Maximo Health, Safety and Environment Manager. The following figure shows the main components of the adapter: 
+[IBM IoT Worker and Home Insights Adapter](.) is an add-on that is installed on the top of Maximo for Oil and Gas or Maximo Health, Safety and Environment Manager. The following figure shows the main components of the adapter: 
 
 ![Libert](Diagrams/MX_AdapterComponents.png)
 
@@ -48,12 +48,12 @@ Figure 2 - Main components of the adapter for IoT Worker and Home Insights.
 
 It contains database scripts and Java code to create and enable the following records and features:
 
-* The WORKERINSIGHTS endpoint to IoT Worker and Home Insights tenant. This endpoint has its own [http  handler](https://github.ibm.com/apbram/maximo_workerInsights/blob/master/Source/applications/maximo/businessobjects/src/psdi/plusg/app/plusgalert/PlusGWorkerInsightsHandler.java) implemented to authenticate and invoke data from the IoT Worker and Home Insights tenant.
-* The WORKERINSIGHTS cron task to get the hazards from IoT Worker and Home Insights, which, by default, is configured to get new hazards every five minutes. The [cron task properties](https://github.ibm.com/apbram/maximo_workerInsights#configure-and-enable-maximo-crontask) can be used to configure which kinds of hazards will be persisted as alerts and which will create incidents. A [process class](https://github.ibm.com/apbram/maximo_workerInsights/blob/master/Source/applications/maximo/businessobjects/src/psdi/plusg/app/plusgalert/PlusGWorkerInsightsProcessor.java) is associated with this cron task to copy the hazards from IoT Worker and Home Insights into alerts in the Maximo product. This [process class](https://github.ibm.com/apbram/maximo_workerInsights/blob/master/Source/applications/maximo/businessobjects/src/psdi/plusg/app/plusgalert/PlusGWorkerInsightsProcessor.java) can be altered if it is necessary to change the mapping between hazard and alert attributes (see method syncAlertsReadings).
-* A new Maximo business object [PlusGAlerts](https://github.ibm.com/apbram/maximo_workerInsights/blob/master/Source/applications/maximo/businessobjects/src/psdi/plusg/app/plusgalert/PlusGAlerts.java) to handle the PLUSGALERTS object. This class generates the incident records so it can be altered to change the mapping between alerts and incidents in the Maximo product.
+* The WORKERINSIGHTS endpoint to IoT Worker and Home Insights tenant. This endpoint has its own [http  handler](./Source/applications/maximo/businessobjects/src/psdi/plusg/app/plusgalert/PlusGWorkerInsightsHandler.java) implemented to authenticate and invoke data from the IoT Worker and Home Insights tenant.
+* The WORKERINSIGHTS cron task to get the hazards from IoT Worker and Home Insights, which, by default, is configured to get new hazards every five minutes. The [cron task properties](#configure-and-enable-the-maximo-cron-task) can be used to configure which kinds of hazards will be persisted as alerts and which will create incidents. A [process class](./Source/applications/maximo/businessobjects/src/psdi/plusg/app/plusgalert/PlusGWorkerInsightsProcessor.java) is associated with this cron task to copy the hazards from IoT Worker and Home Insights into alerts in the Maximo product. This [process class](./Source/applications/maximo/businessobjects/src/psdi/plusg/app/plusgalert/PlusGWorkerInsightsProcessor.java) can be altered if it is necessary to change the mapping between hazard and alert attributes (see method syncAlertsReadings).
+* A new Maximo business object [PlusGAlerts](./Source/applications/maximo/businessobjects/src/psdi/plusg/app/plusgalert/PlusGAlerts.java) to handle the PLUSGALERTS object. This class generates the incident records so it can be altered to change the mapping between alerts and incidents in the Maximo product.
 * A new object structure, MXAPIPLUSGSA, to expose PLUSGALERTS object and make it possible for IoT Worker  and Home Insights to directly push hazards into the Maximo product as alerts.
 * New attribute alertid in the INCIDENTS object to make the relationship between INCIDENTS and PLUSGALERTS after an incident is created triggered by an alert.
-* The [product XML](https://github.ibm.com/apbram/maximo_workerInsights/blob/master/Source/applications/maximo/properties/product/workerinsights.xml) file to identify the adapter for IoT Worker and Home Insights as an extention or add-on.
+* The [product XML](./Source/applications/maximo/properties/product/workerinsights.xml) file to identify the adapter for IoT Worker and Home Insights as an extention or add-on.
 
 ## 1.3. Install the adapter for IoT Worker and Home Insights as an add-on
 
@@ -61,13 +61,13 @@ After the development environment is configured according item 1.1:
 
 ### Get code from GitHub
 
-* *Clone or fork [IBM IoT Worker and Home Insights Adapter](https://github.ibm.com/apbram/maximo_workerInsights) from GitHub*
+* *Clone or fork [IBM IoT Worker and Home Insights Adapter](.) from GitHub*
 * If you opt to use the source code:
-    * *Copy the content of the [maximo-workerInsights/source](https://github.ibm.com/apbram/maximo_workerInsights/tree/master/Source) package over the  Maximo installation folder (MAXIMO_HOME)*
-    * Build the entire project and make sure the [maximo-workerInsights/source](https://github.ibm.com/apbram/maximo_workerInsights/tree/master/Source) generated the "*.class" output. [See instruction here - Building and compiling section](https://developer.ibm.com/assetmanagement/develop/setup/).
+    * *Copy the content of the [maximo-workerInsights/source](./Source) package over the  Maximo installation folder (MAXIMO_HOME)*
+    * Build the entire project and make sure the [maximo-workerInsights/source](./Source) generated the "*.class" output. [See instruction here - Building and compiling section](https://developer.ibm.com/assetmanagement/develop/setup/).
 
 * If you opt to use the binary code:
-    * *Copy and unzip the content of the [maximo-workerInsights/binary](https://github.ibm.com/apbram/maximo_workerInsights/tree/master/binary) package over the Maximo installation folder (MAXIMO_HOME)*
+    * *Copy and unzip the content of the [maximo-workerInsights/binary](./binary) package over the Maximo installation folder (MAXIMO_HOME)*
 
 ### Run updatedb
 *[See instruction here on how to run Updatedb.](https://developer.ibm.com/static/site-id/155/maximodev/toolsguide/TOOLS.html#_updatedb)*
@@ -116,7 +116,7 @@ For reference, the IoT Worker and Home Insights swagger API can be found in this
 
  The following steps describe how to configure the action by using the API. Click on the links to see the swagger definition for each step.
 
-1. [Create an action to post hazards into the Maximo product](https://ioti-stage1.us-south.containers.mybluemix.net/docs/#/actions/createAction). Example of the JSON to be posted can be found [here](https://github.ibm.com/apbram/maximo_workerInsights/blob/master/Examples%20of%20Json/WI_POST_hazard_toMaximo.json). Replace the Maximo environment information (host, port, user and password). [This example is based on Maximo authentication using LDAP Basic.](https://www.ibm.com/developerworks/community/blogs/a9ba1efe-b731-4317-9724-a181d6155e3a/entry/maximo_and_ldap_configuration_from_start_to_finish?lang=en_us)
+1. [Create an action to post hazards into the Maximo product](https://ioti-stage1.us-south.containers.mybluemix.net/docs/#/actions/createAction). Example of the JSON to be posted can be found [here](./Examples%20of%20Json/WI_POST_hazard_toMaximo.json). Replace the Maximo environment information (host, port, user and password). [This example is based on Maximo authentication using LDAP Basic.](https://www.ibm.com/developerworks/community/blogs/a9ba1efe-b731-4317-9724-a181d6155e3a/entry/maximo_and_ldap_configuration_from_start_to_finish?lang=en_us)
 
 2. [Associate the action with a shield.](https://ioti-stage1.us-south.containers.mybluemix.net/docs/#/shields/updateShield)
 
@@ -153,7 +153,7 @@ Figure 6 - Websphere application server full profile configuration for single si
 This option is not tested yet (the link on how to set up websphere full profile bridge available soon in this tutorial. Open a git issue in case it is urgently needed).
 
 ## Issues and Suggestions
-This tool is open source, which means that you are free to extend it.  You can even submit pull requests if you add a feature or fix a bug.  If you want to submit issues or suggestions, you can use the [Github Issues tab](https://github.ibm.com/apbram/maximo_workerInsights/issues).
+This tool is open source, which means that you are free to extend it.  You can even submit pull requests if you add a feature or fix a bug.  If you want to submit issues or suggestions, you can use the [Github Issues tab](./issues).
 
 ## References
 
