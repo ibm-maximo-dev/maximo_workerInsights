@@ -8,7 +8,7 @@
     "alertid": "$._id",
     "shield": "$.shieldId",
     "username": "$.userId",
-	"level":"$.actionParams.extra.riskLevel.level",
+	"alertlevel":"$.actionParams.extra.riskLevel.level",
 	"alerttitle": "$.actionParams.extra.riskLevel.title",
 	"alertdesc":  "$.actionParams.hazardTitle",
     "latitudey": "$.rawEvents[0].location.geometry.coordinates[1]",

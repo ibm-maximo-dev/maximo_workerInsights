@@ -138,7 +138,7 @@ public class PlusGWorkerInsightsProcessor extends DefaultResourceProcessor
 							safetyAlert.setValue("alerttitle", (String) riskLevel.get("title"));	
 						}						
 						if(riskLevel.get("level")!=null){
-							safetyAlert.setValue("level", (Long) riskLevel.get("level"));	
+							safetyAlert.setValue("alertlevel", (Long) riskLevel.get("level"));	
 						}
 						
 						if(jo.get("type")!=null){
