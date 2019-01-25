@@ -1,7 +1,7 @@
 # *IBM IoT Worker and Home Insights Adapter for IBM Maximo for Oil and Gas and IBM Maximo Health, Safety and Environment Manager*
 
 ## Overview
-[IBM IoT Worker and Home Insights](https://www-01.ibm.com/common/ssi/cgi-bin/ssialias?infotype=AN&subtype=CA&htmlfid=897/ENUS218-258&appname=USN), which was formerly known as IBM IoT for Insurance on Cloud, is a fully-managed cloud service offering that collects and analyzes data from sensors, such as wearables devices, to detect risks that are related to the employee work environment. It can detect falls, fatigue, heat exposure, and many others potenial hazards.
+[IBM IoT Worker and Home Insights](https://www-01.ibm.com/common/ssi/cgi-bin/ssialias?infotype=AN&subtype=CA&htmlfid=897/ENUS218-258&appname=USN), which was formerly known as IBM IoT for Insurance on Cloud, is a fully-managed cloud service offering that collects and analyzes data from sensors, such as wearables devices, to detect risks that are related to the employee work environment. It can detect falls, fatigue, heat exposure, and many others potential hazards.
 
 In this context, after a potential hazard is detected by IoT Worker and Home Insights, [IBM Maximo Health, Safety and Environment Manager](https://www.ibm.com/support/knowledgecenter/en/SS5GME_7.6.1/com.ibm.hse.doc/pdf_hse_qsg.html) / [IBM Maximo for Oil and Gas](https://www.ibm.com/support/knowledgecenter/en/SSLL9G_7.6.0/com.ibm.oil.doc/pdf_oil_qsg.html) is able to handle and address this hazard by starting the Incident Management process.
 
@@ -134,7 +134,7 @@ Many options are available enable this single sign on. This session will describ
 
 ### Building a Liberty bridge 
 
-The following figure shows an example of architecture where a Liberty server is running to receive and redirect the authentication from IoT Worker and Home Insights to the Maximo product (link on how to set up this bridge available soon in this tutorial. Open a git issue in case it is urgently needed).
+The following figure shows an example of architecture where a Liberty server is running to receive and redirect the authentication from IoT Worker and Home Insights to the Maximo product (find instructions on how to set Liberty [here](https://github.com/ibm-watson-iot/wi-websphere-auth/tree/master/was-liberty-profile)).
 
 ![Libert](Diagrams/LibertyLDAPIntegration.png)
 Figure 5 - LDAP configuration for single sign on.
@@ -150,7 +150,7 @@ Because Websphere application server is frequently used to deploy the Maximo pro
 ![WAS](Diagrams/WASLDAPIntegration.png)
 Figure 6 - Websphere application server full profile configuration for single sign on.
 
-This option is not tested yet (the link on how to set up websphere full profile bridge available soon in this tutorial. Open a git issue in case it is urgently needed).
+Find the instructions on how to set up websphere full profile bridge [here](https://github.com/ibm-watson-iot/wi-websphere-auth/tree/master/was-full-profile).
 
 ## Issues and Suggestions
 This tool is open source, which means that you are free to extend it.  You can even submit pull requests if you add a feature or fix a bug.  If you want to submit issues or suggestions, you can use the [Github Issues tab](https://github.com/ibm-maximo-dev/maximo_workerInsights/issues).
