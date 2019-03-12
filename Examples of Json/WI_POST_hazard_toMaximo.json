@@ -2,18 +2,21 @@
  "name": "hazardsToMaximo",
  "description": "Create alerts on Maximo",
  "type": "action", 
+ "contexts": [
+  "ORG.<tenant>"
+ ],
  "jsonPathTransform": {
     "alertsource": "WORKERINSIGHTS",
     "alerttype": "hazard",
     "alertid": "$._id",
     "shield": "$.shieldId",
-    "username": "$.userId",
-	"alertlevel":"$.actionParams.extra.riskLevel.level",
-	"alerttitle": "$.actionParams.extra.riskLevel.title",
-	"alertdesc":  "$.actionParams.hazardTitle",
-    "latitudey": "$.rawEvents[0].location.geometry.coordinates[1]",
-	"longitudex":"$.rawEvents[0].location.geometry.coordinates[0]"
-
+    "username": "$.userUid",
+    "level":"$.actionParams.riskLevel.level",
+    "alerttitle": "Panic",
+    "alertdesc":  "$.actionParams.hazardTitle",
+    "updatedat":  "$.timestamp.ISO8601ToEpochMillis()",
+    "latitudey": "$.location.geometry.coordinates[1]",
+    "longitudex":"$.location.geometry.coordinates[0]"
 },
  "callbackAction": {
    "url": "http://<host>:<port>/maximo/oslc/os/MXAPIPLUSGSA?lean=1",
