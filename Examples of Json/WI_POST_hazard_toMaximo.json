@@ -13,7 +13,7 @@
     "username": "$.userUid",
     "level":"$.actionParams.riskLevel.level",
     "alerttitle": "Panic",
-    "alertdesc":  "$.actionParams.hazardTitle",
+    "alertdesc":  "$.actionParams.hazardTitle.en",
     "updatedat":  "$.timestamp.ISO8601ToEpochMillis()",
     "latitudey": "$.location.geometry.coordinates[1]",
     "longitudex":"$.location.geometry.coordinates[0]"
@@ -21,7 +21,7 @@
  "callbackAction": {
    "url": "http://<host>:<port>/maximo/oslc/os/MXAPIPLUSGSA?lean=1",
   "auth": {
-    "authType": "basic",
+    "authType": "maxauth",
     "username": <user>,
     "password": <password>
   }
